@@ -1,3 +1,4 @@
+import StkPayment from "../Model/StkPayment.js";
 import { initiateStkPush } from "../Service/StkPush.Service.js";
 import { normalizePhone } from "../Util/phone.util.js";
 
@@ -32,6 +33,49 @@ export const pay1100 = async (req, res) => {
     res.status(500).json({
       success: false,
       error: error.response?.data || error.message
+    });
+  }
+};
+
+// getting all fetched recorrds
+export const getAllPayments = async (req, res) => {
+  try {
+    const payments = await StkPayment.find()
+      .sort({ createdAt: -1 }); // newest first
+
+    res.json({
+      success: true,
+      count: payments.length,
+      data: payments
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      success: false,
+      error: "Failed to fetch payments"
+    });
+  }
+};
+
+// get all successiful payments
+export const getSuccessfulPayments = async (req, res) => {
+  try {
+    const payments = await StkPayment.find({ status: "SUCCESS" })
+      .select("customerName phoneNumber amount mpesaReceiptNumber createdAt")
+      .sort({ createdAt: -1 });
+
+    res.json({
+      success: true,
+      count: payments.length,
+      data: payments
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: "Failed to fetch successful payments"
     });
   }
 };

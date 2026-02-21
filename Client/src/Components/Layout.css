@@ -1,0 +1,33 @@
+/* Layout.css */
+
+.content.watermark {
+  flex: 1;
+  padding: 1.5rem;
+  background-color: #f8fafc;
+  position: relative; /* necessary for the pseudo-element */
+  overflow: hidden; 
+}
+
+
+.content.watermark::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;          
+  height: 600px;         
+  background-image: url('../image/Muthaiga.png'); /* path to watermark */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.08;        
+  transform: translate(-50%, -50%) rotate(-30deg); 
+  pointer-events: none; 
+  z-index: 0;            
+}
+
+/* Make sure page content stays on top */
+.content.watermark > * {
+  position: relative;
+  z-index: 1;
+}

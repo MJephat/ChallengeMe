@@ -1,0 +1,212 @@
+/* index.css */
+
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+}
+
+.app-layout {
+  display: flex;
+  height: 100vh;
+}
+
+.side-nav {
+  width: 220px;
+  padding: 1rem;
+  background-color: #11ac09;
+  color: white;
+  position: relative; 
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: hidden; /* keep watermark inside */
+}
+
+
+
+/* Watermark image behind nav links */
+.side-nav::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%; /* adjust size */
+  height: 100%; /* adjust size */
+  background-image: url('./image/swing.png'); /* your watermark */
+  background-repeat:repeat;
+  background-size: contain;
+  background-position: center;
+  opacity: 0.05; /* very faint */
+  transform: translate(-50%, -50%); 
+  pointer-events: none; /* links remain clickable */
+  z-index: 0; /* behind nav links */
+}
+
+.side-nav h2,
+.side-nav nav,
+.side-nav nav a {
+  position: relative;
+  z-index: 1;
+}
+
+
+.side-nav .logo {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.side-nav nav a {
+  display: block;
+  color: #cbd5f5;
+  text-decoration: none;
+  padding: 0.7rem;
+  border-radius: 6px;
+}
+
+.side-nav nav a.active,
+.side-nav nav a:hover {
+  background: #e9ecf0;
+  color: black;
+}
+
+.main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-nav {
+  height: 60px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.content {
+  padding: 1.5rem;
+  background: #f8fafc;
+  flex: 1;
+}
+
+/* dasshboard */
+
+.selected-row {
+  background: #e0f2fe !important;
+}
+.payments-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.payments-table th,
+.payments-table td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.payments-table th {
+  background: #f1f5f9;
+  font-weight: 600;
+}
+
+.payments-table tr:hover {
+  background: #f8fafc;
+}
+
+/* Tee time badges */
+.morning {
+  background: #dcfce7;
+  color: #166534;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+.afternoon {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+/* login */
+.auth-wrapper {
+  min-height: calc(100vh - 60px); /* account for TopNav */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9fafb;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 380px;
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.auth-card h2 {
+  margin-bottom: 6px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin-bottom: 24px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+.auth-card input:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+.auth-card button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #11ac09;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-card button:hover {
+  background: #11ac09;
+}
+
+.auth-footer {
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.auth-footer a {
+  color: #11ac09;
+  text-decoration: none;
+  font-weight: 500;
+}
